@@ -122,31 +122,8 @@ public final class AbilityManager extends BasePlayerManager {
     }
 
     public void onAbilityInvoke(AbilityInvokeEntry invoke) throws Exception {
-        Grasscutter.getLogger()
-                .trace(
-                        "Ability invoke: "
-                                + invoke
-                                + " "
-                                + invoke.getArgumentType()
-                                + " ("
-                                + invoke.getArgumentTypeValue()
-                                + "): "
-                                + this.player.getScene().getEntityById(invoke.getEntityId()));
         var entity = this.player.getScene().getEntityById(invoke.getEntityId());
         if (entity != null) {
-            Grasscutter.getLogger()
-                    .trace(
-                            "Entity {} has a group of {} and a config of {}.",
-                            invoke.getEntityId(),
-                            entity.getGroupId(),
-                            entity.getConfigId());
-
-            Grasscutter.getLogger()
-                    .trace(
-                            "Invoke type of {} ({}) has entity {}.",
-                            invoke.getArgumentType(),
-                            invoke.getArgumentTypeValue(),
-                            entity.getId());
         } else if (DebugConstants.LOG_ABILITIES) {
             Grasscutter.getLogger()
                     .debug(
@@ -156,10 +133,6 @@ public final class AbilityManager extends BasePlayerManager {
                             invoke.getEntityId());
         }
 
-        if (invoke.getHead().getTargetId() != 0) {
-            Grasscutter.getLogger()
-                    .trace("Target: " + this.player.getScene().getEntityById(invoke.getHead().getTargetId()));
-        }
         if (invoke.getHead().getLocalId() != 0) {
             this.handleServerInvoke(invoke);
             return;

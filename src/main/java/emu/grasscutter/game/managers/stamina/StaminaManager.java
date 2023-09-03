@@ -229,8 +229,6 @@ public class StaminaManager extends BasePlayerManager {
         float diffX = currentCoordinates.getX() - previousCoordinates.getX();
         float diffY = currentCoordinates.getY() - previousCoordinates.getY();
         float diffZ = currentCoordinates.getZ() - previousCoordinates.getZ();
-        logger.trace("isPlayerMoving: " + previousCoordinates + ", " + currentCoordinates +
-            ", " + diffX + ", " + diffY + ", " + diffZ);
         return Math.abs(diffX) > 0.3 || Math.abs(diffY) > 0.2 || Math.abs(diffZ) > 0.3;
     }
 
@@ -252,9 +250,6 @@ public class StaminaManager extends BasePlayerManager {
         }
 
         int maxStamina = isCharacterStamina ? getMaxCharacterStamina() : getMaxVehicleStamina();
-        logger.trace((isCharacterStamina ? "C " : "V ") + currentStamina + "/" + maxStamina + "\t" + currentState + "\t" +
-            (isPlayerMoving() ? "moving" : "      ") + "\t(" + consumption.type + "," +
-            consumption.amount + ")");
 
         int newStamina = currentStamina + consumption.amount;
         if (newStamina < 0) {
