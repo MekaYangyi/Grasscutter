@@ -445,8 +445,6 @@ public class StaminaManager extends BasePlayerManager {
             int currentVehicleStamina = getCurrentVehicleStamina();
             int maxVehicleStamina = getMaxVehicleStamina();
             if (moving || (currentCharacterStamina < maxCharacterStamina) || (currentVehicleStamina < maxVehicleStamina)) {
-                logger.trace("Player moving: " + moving + ", stamina full: " +
-                        (currentCharacterStamina >= maxCharacterStamina) + ", recalculate stamina");
                 boolean isCharacterStamina = true;
                 Consumption consumption;
 
@@ -494,7 +492,6 @@ public class StaminaManager extends BasePlayerManager {
                             // For others recover after 1 seconds (5 ticks) - as official server does.
                             staminaRecoverDelay++;
                             consumption.amount = 0;
-                            logger.trace("Delaying recovery: " + staminaRecoverDelay);
                         }
                     }
                     updateStaminaRelative(cachedSession, consumption, isCharacterStamina);
